@@ -1,5 +1,10 @@
 ## Deployment
 
+Install essential package with following command:
+```
+composer install
+```
+
 Make a copy of .env.example to .env with following command:
 ```
 cp .env.example .env
