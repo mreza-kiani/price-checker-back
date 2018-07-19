@@ -15,9 +15,9 @@ return [
 
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-    'register_successful' => 'Registration done!',
-    'login_failed' => 'Login failed!',
-    'login_successful' => 'Login successful!',
-    'token_refreshed' => 'Token Refreshed!',
+    'register_successful' => 'ثبت‌نام با موفقیت انجام شد.',
+    'login_failed' => 'در ورود شما مشکلی پیش آمد.',
+    'login_successful' => 'ورود شما با موفقیت انجام شد.',
+    'token_refreshed' => 'توکن با موفقیت رفرش شد.',
 
 ];
