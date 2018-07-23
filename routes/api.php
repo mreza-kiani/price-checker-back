@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,5 +15,7 @@ Route::prefix('user')->group(function(){
     Route::post('register', 'AuthController@register');
     Route::post('login', 'AuthController@login');
     Route::middleware('jwt.refresh')->get('token/refresh', 'AuthController@refresh');
-
+});
+Route::prefix('product')->group(function (){
+	Route::post('add', 'ProductController@add');
 });
