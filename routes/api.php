@@ -16,6 +16,8 @@ Route::prefix('user')->group(function(){
     Route::post('login', 'AuthController@login');
     Route::middleware('jwt.refresh')->get('token/refresh', 'AuthController@refresh');
 });
-Route::prefix('product')->group(function (){
-	Route::post('add', 'ProductController@add');
+Route::prefix('product')->group(['middleware' => 'jwt.auth'],function (){
+    Route::post('add', 'ProductController@add');
+    Route::get('getlist','ProductController@getlist');
+    Route::post('delete','ProductController@delete');
 });
