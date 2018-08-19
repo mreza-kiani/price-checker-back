@@ -17,19 +17,20 @@ class ProductController extends Controller
 			"unit" => "USD",
 			"driver" => 0,
 		]);
-		$user->products()->attach($product->id);
+		Auth::user()->products()->attach($product->id);
     	return response()->json(ResponseGenerator::make($product, 'product.add_success'));
 	}
+
 	public function getlist(){
-		$list = Auth::user() -> products();
-		return response()->json(ResponseGenerator::make($list,'success'));
+		$products = Auth::user()->products()->get();
+		return response()->json(ResponseGenerator::make($products));
 		
 	}
-	public function delete(Request $request){
-		$productid = $request ->get('id');
-		$user = Auth::user();
-		$user->products()->detach($productid);
 
+	public function delete(Request $request){
+		$productId = $request ->get('id');
+		$user = Auth::user();
+		$user->products()->detach($productId);
+        return response()->json(ResponseGenerator::make([],'product.delete_success'));
 	}
 }
-// -=
