@@ -27,5 +27,9 @@ class Product extends Model
     public function users() {
         return $this->belongsToMany(User::class, 'product_user', 'product_id', 'user_id');
     }
+
+    public function scopeActive($query) {
+        return $query->where('price', 0);
+    }
 }
 

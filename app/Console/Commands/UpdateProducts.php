@@ -40,7 +40,7 @@ class UpdateProducts extends Command
      */
     public function handle()
     {
-        foreach (Product::all() as $product) {
+        foreach (Product::active()->get() as $product) {
             if (Provider::update($product))
                 Log::info("Product {$product->id} successfully updated!");
             else
