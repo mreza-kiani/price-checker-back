@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Utils\PriceFetcher\Provider;
 use App\Utils\ResponseGenerator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,7 @@ class ProductController extends Controller
 			"driver" => 0,
 		]);
 		Auth::user()->products()->attach($product->id);
+		Provider::setDriver($product);
     	return response()->json(ResponseGenerator::make($product, 'product.add_success'));
 	}
 

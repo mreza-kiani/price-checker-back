@@ -13,6 +13,6 @@ class Kernel
     public static $sessionKey = "price-fetcher";
 
     public static $drivers = [
-        'json-ld' => \App\Utils\PriceFetcher\Drivers\JsonLd\Driver::class,
+        1 => \App\Utils\PriceFetcher\Drivers\JsonLd\Driver::class,
     ];
 }

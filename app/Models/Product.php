@@ -5,7 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property mixed url
+ * @property integer id
+ * @property string url
+ * @property string name
+ * @property int price
+ * @property string unit
+ * @property string image_url
+ * @property int driver
  */
 class Product extends Model
 {

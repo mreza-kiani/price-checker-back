@@ -14,27 +14,26 @@ class Factory
     private static $singleton = [];
 
     /**
-     * @param string $driverName
+     * @param int $driverNumber
      */
-    private static function updateInstance($driverName = null)
+    private static function updateInstance($driverNumber = null)
     {
-        if (static::$singleton == null or !key_exists($driverName, static::$singleton)) {
-            if (key_exists($driverName, Kernel::$drivers)) {
-                static::$singleton[$driverName] = new Kernel::$drivers[$driverName]();
+        if (static::$singleton == null or !key_exists($driverNumber, static::$singleton)) {
+            if (key_exists($driverNumber, Kernel::$drivers)) {
+                static::$singleton[$driverNumber] = new Kernel::$drivers[$driverNumber]();
             } else {
-                static::$singleton[$driverName] = null;
+                static::$singleton[$driverNumber] = null;
             }
         }
     }
 
     /**
-     * @param string $driverName
+     * @param int $driverNumber
      * @return BaseDriver
      */
-    public static function driver($driverName = null)
+    public static function driver($driverNumber)
     {
-        $driverName = $driverName == null ? env("FETCHER_DEFAULT_DRIVER", 'json-ld') : $driverName;
-        static::updateInstance($driverName);
-        return static::$singleton[$driverName];
+        static::updateInstance($driverNumber);
+        return static::$singleton[$driverNumber];
     }
 }
