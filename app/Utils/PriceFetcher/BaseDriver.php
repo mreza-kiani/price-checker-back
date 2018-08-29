@@ -10,16 +10,24 @@ namespace App\Utils\PriceFetcher;
 
 use App\Models\Product;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Support\Facades\Log;
 
 abstract class BaseDriver
 {
-    public function fetchPrice(Product $product) {
-        $response = $this->fetchHTML($product->url);
-        if ($response->getStatusCode() != 200)
-            return false;
+    public function update(Product $product) {
+        try {
+            $response = $this->fetchHTML($product->url);
+            if ($response->getStatusCode() != 200)
+                return false;
 
-        $data = $this->getProductInfo($response);
-        return $data;
+            $data = $this->getProductInfo($response);
+            if ($data)
+                return $product->update($data);
+        } catch (GuzzleException $e) {
+            Log::error($e->getMessage());
+        }
+        return false;
     }
 
     /**

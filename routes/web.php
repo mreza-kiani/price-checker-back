@@ -25,5 +25,5 @@ Route::get('/', function () {
         ]);
     }
 
-    return \App\Utils\PriceFetcher\Factory::driver('json-ld')->fetchPrice($product);
+    \App\Utils\PriceFetcher\Factory::driver('json-ld')->update($product);
 });

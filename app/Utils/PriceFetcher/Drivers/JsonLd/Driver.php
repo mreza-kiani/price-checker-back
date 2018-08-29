@@ -34,19 +34,21 @@ class Driver extends BaseDriver {
                 continue;
 
             $info["name"] = $this->getPregMatchValue("name", $line);
-            $info["price"] = $this->getPregMatchValue("price", $line); //TODO: fix price regex
+            $info["price"] = $this->getPregMatchValue("price", $line);
             $info["unit"] = $this->getPregMatchValue("priceCurrency", $line);
             $info["image_url"] = $this->getPregMatchValue("image", $line);
 
             return $info;
         }
 
-        return false;
+        return null;
     }
 
     private function getPregMatchValue($type, $line) {
-        $pattern = "/\"{$type}\"([^:]*):([^(\")]*)\"([^\"]*)\"/";
+        $pattern = "/\"{$type}\"([^:]*):([\[ ]*)(([^\"][^,]*)|\"([^\"]*)\")/";
         preg_match($pattern, $line, $outputArray);
+        if ($outputArray[3][0] == '"')
+            return substr($outputArray[3], 1, -1);
         return $outputArray[3];
     }
 }
